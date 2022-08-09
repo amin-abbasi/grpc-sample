@@ -1,0 +1,54 @@
+syntax = "proto3"; // Specify proto3 version.
+
+package users; // Optional: unique package name.
+
+// Service: methods that the grpc server can expose to the client
+service UsersService {
+  rpc Health (HealthRequest) returns (HealthResponse);
+  rpc Create (CreateRequest) returns (CreateResponse);
+  rpc List (ListRequest) returns (ListResponse);
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc Remove (RemoveRequest) returns (RemoveResponse);
+}
+
+// Server Health Check [returns { check: true }]
+message HealthRequest {}
+message HealthResponse {
+  bool check = 1;
+}
+
+
+// Type definition for users.
+message User {
+  string userId = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+// Create new User
+message CreateRequest {
+  User user = 1;
+}
+message CreateResponse {
+  bool success = 1;
+}
+
+// List Users
+message ListRequest {}
+message ListResponse {
+  repeated User user = 1;
+}
+
+// Get User
+message GetResponse {
+  User user = 1;
+}
+message GetRequest {
+  string userId = 1;
+}
+
+// Remove User
+message RemoveRequest {
+  string userId = 1;
+}
+message RemoveResponse {}

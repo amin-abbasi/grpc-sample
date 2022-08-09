@@ -1,0 +1,33 @@
+{
+  "name": "grpc-sample",
+  "version": "1.0.0",
+  "description": "This is a gRPC sample project.",
+  "main": "./src/server/index.js",
+  "scripts": {
+    "start": "node src/server/index.js --trace-warnings",
+    "start:client": "node src/client/index.js --trace-warnings",
+    "test": "jest --updateSnapshot --detectOpenHandles --coverage --forceExit --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amin4193/grpc-sample.git"
+  },
+  "keywords": [
+    "grpc",
+    "boilerplate"
+  ],
+  "author": "AAH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amin4193/grpc-sample/issues"
+  },
+  "homepage": "https://github.com/amin4193/grpc-sample.git#readme",
+  "dependencies": {
+    "@grpc/grpc-js": "1.6.8",
+    "@grpc/proto-loader": "0.7.0",
+    "@hapi/boom": "10.0.0",
+    "dotenv": "16.0.1",
+    "mongoose": "6.5.1"
+  },
+  "devDependencies": {}
+}

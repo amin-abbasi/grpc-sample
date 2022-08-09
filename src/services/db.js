@@ -1,0 +1,29 @@
+const mongoose = require('mongoose')
+const config = require('../configs')
+
+// Database URL
+const { DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS, NODE_ENV } = config.env
+const dbURL = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`
+
+// Import the mongoose module
+const options = {
+  autoIndex: false
+}
+
+// Secure MongoDB with username and password
+if(DB_USER && DB_PASS) {
+  options.user = DB_USER
+  options.pass = DB_PASS
+}
+
+// Mongoose Debug Mode [set it as `false` in production]
+mongoose.set('debug', (NODE_ENV === 'development'))
+
+mongoose.connect(dbURL, options)
+console.log('<<<< Connected to MongoDB >>>>')
+
+mongoose.Promise = global.Promise // Get Mongoose to use the global promise library
+const db = mongoose.connection    // Get the default connection
+return db
+
+module.exports = db
